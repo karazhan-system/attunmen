@@ -1,0 +1,28 @@
+{
+  "name": "attunmen",
+  "version": "1.0.0",
+  "description": "Attunmen，卡拉赞Boss，猎手阿图门",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyrianax/karazhan-attunmen.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cyrianax/karazhan-attunmen/issues"
+  },
+  "homepage": "https://github.com/cyrianax/karazhan-attunmen#readme",
+  "dependencies": {
+    "@koa/cors": "^3.0.0",
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^7.4.0"
+  }
+}
