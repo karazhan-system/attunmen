@@ -1,5 +1,7 @@
 const axios = require('axios')
 const cheerio = require('cheerio')
+const fs = require('fs')
+const config = require('../config')
 
 // 爬虫基础类
 class Crawler {
@@ -7,12 +9,23 @@ class Crawler {
     
   }
 
-  async fetch (url, headless) {
+  async fetch (url) {
     const result = await axios({
       headers: {
         'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/66.0.3359.139 Chrome/66.0.3359.139 Safari/537.36'
       },
-      url
+      url,
+    })
+    return result.data
+  }
+
+  async download (urls) {
+    const result = await axios({
+      url: `${config.OSS}/img/`,
+      method: 'post',
+      data: {
+        urls
+      }
     })
     return result.data
   }
