@@ -23,10 +23,12 @@ class SiteCrawler extends Crawler {
     const imgs = []
     while ((matches = reg.exec(rawContent)) !== null) {
       const [matched, p1] = matches
-      imgs.push(p1)
+      imgs.push(`https:${p1}`)
     }
 
     const ossImgs = await this.download(imgs)
+    console.log(ossImgs);
+    
 
     const content = $(selector).html().replace(/data-original-src="([^"]*)"/g, (match, p1) => {
       const filename = ossImgs[`https:${p1}`]
