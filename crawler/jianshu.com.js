@@ -19,8 +19,13 @@ class SiteCrawler extends Crawler {
 
     const reg = /data-original-src="([^"]*)"/g
 
-    const matches = rawContent.matchAll(reg)
-    const imgs = Array.from(matches, m => `https:${m[1]}`)
+    let matches
+    const imgs = []
+    while ((matches = reg.exec(rawContent)) !== null) {
+      const [matched, p1] = matches
+      imgs.push(p1)
+    }
+
     const ossImgs = await this.download(imgs)
 
     const content = $(selector).html().replace(/data-original-src="([^"]*)"/g, (match, p1) => {
