@@ -27,8 +27,6 @@ class SiteCrawler extends Crawler {
     }
 
     const ossImgs = await this.download(imgs)
-    console.log(ossImgs);
-    
 
     const content = $(selector).html().replace(/data-original-src="([^"]*)"/g, (match, p1) => {
       const filename = ossImgs[`https:${p1}`]
