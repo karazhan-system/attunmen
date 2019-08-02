@@ -12,7 +12,7 @@ class SiteCrawler extends Crawler {
     const html = await this.fetch(url)
     const $ = this.parseHTML(html)
 
-    const title = $('title').text()
+    const title = $('title').text().replace(' - 简书', '')
     const keywords = $('meta[name=keywords]').attr('content')
     const description = $('meta[name=description]').attr('content')
     const rawContent = $(selector).html()
