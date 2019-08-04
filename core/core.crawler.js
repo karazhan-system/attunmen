@@ -43,9 +43,13 @@ class Crawler {
   }
 }
 
+const urlsReg = /(www\.)?([a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+)/
+
 // 解析Url
 const parseUrl = url => {
-  return 'jianshu.com'
+  const result = url.match(urlsReg)
+  const [match, host, domain] = result
+  return domain
 }
 
 module.exports = {
