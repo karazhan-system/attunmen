@@ -1,6 +1,7 @@
 const axios = require('axios')
 const cheerio = require('cheerio')
 const fs = require('fs')
+const path = require('path')
 const config = require('../config')
 
 // 爬虫基础类
@@ -41,24 +42,42 @@ class Crawler {
 
     return $
   }
+
+  parseHead ($) {
+    const keywords = $('meta[name=keywords]').attr('content')
+    const description = $('meta[name=description]').attr('content')
+    return { keywords, description }
+  }
 }
 
 const urlsReg = /(www\.)?([a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+)/
+const crawlers = fs.readdirSync(path.resolve(__dirname, '../crawler')).map(name => name.replace('.js', ''))
 
 // 解析Url
 const parseUrl = url => {
   const result = url.match(urlsReg)
   const [match, host, domain] = result
-  return domain
+
+  let crawler = ''
+  crawlers.forEach(name => {
+    if (domain.match(name)) {
+      crawler = name
+    }
+  })
+  
+  return crawler
 }
 
 module.exports = {
   Crawler,
   // 创建爬虫对象函数
   createCrawler (url) {
-    const domain = parseUrl(url)
-    const SiteCrawler = require(`../crawler/${domain}`)
-    
-    return new SiteCrawler()
-  }
+    const crawlerName = parseUrl(url)
+    if (crawlerName) {
+      const SiteCrawler = require(`../crawler/${crawlerName}`)
+      return new SiteCrawler()
+    } else {
+      
+    }
+  }  
 }

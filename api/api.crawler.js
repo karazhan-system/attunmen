@@ -3,8 +3,6 @@ const api = new Router()
 
 const { createCrawler, parseMd, parseKeyword } = require('../core')
 
-
-
 api.get('/', async ctx => {
   ctx.verifyParams({
     url: 'string'
@@ -16,7 +14,7 @@ api.get('/', async ctx => {
 
   const md = await parseMd(content)
   const words = await parseKeyword(content)
-
+  // ctx.body = content
   ctx.body = {
     // 标题
     title,
