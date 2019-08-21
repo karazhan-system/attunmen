@@ -1,0 +1,23 @@
+<CommonView class="p-task">
+  <CommonToolbar slot="top">
+    <div class="g-title" slot="left"><span class="icon i-item"></span> {{task.name}}</div>
+    <el-button @click="_Delete"><span class="icon i-delete"></span> 删除</el-button>
+    <el-button @click="_Clear"><span class="icon i-delete"></span> 清空</el-button>
+    <el-button @click="_Parse"><span class="icon i-parse"></span> 解析</el-button>
+    <el-button @click="_Run"><span class="icon i-runner"></span> 采集</el-button>
+    <el-button @click="_Run"><span class="icon i-format"></span> 格式化</el-button>
+  </CommonToolbar>
+
+  <el-table :data="documents" height="100%" stripe @selection-change="_Select" v-loading="loading" :element-loading-text="statusText">
+    <el-table-column type="selection"></el-table-column>
+    <el-table-column prop="title" label="标题">
+      <div slot-scope="{row}">
+        <a :href="`/#/task/document/${row._id}`" target="_blank">{{row.title}}</a>
+      </div>
+    </el-table-column>
+    <el-table-column prop="domain" label="来源网站" width="180"></el-table-column>
+    <el-table-column prop="createdAt" label="创建时间" width="180"></el-table-column>
+    <el-table-column prop="statusText" label="内容状态" width="120"></el-table-column>
+  </el-table>
+  <CommonPage slot="bottom" v-model="page" @page="_Page"/>
+</CommonView>

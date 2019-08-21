@@ -1,0 +1,16 @@
+<CommonView class="p-document">
+  <CommonToolbar slot="top">
+    <template slot="left">
+      <div class="g-title">
+        <span class="icon i-item"></span> {{title}}
+      </div>
+      <div class="g-info">
+        （ 原文: <a :href="url" target="_blank">{{url}}</a> ）
+      </div>
+    </template>
+    <el-button><span class="icon i-runner"></span> 采集</el-button>
+    <el-button><span class="icon i-format"></span> 格式化文档</el-button>
+  </CommonToolbar>
+  <p>{{data.description}}</p>
+  <div v-html="data.raw"></div>
+</CommonView>
