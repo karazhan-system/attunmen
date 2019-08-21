@@ -9,7 +9,8 @@ import Mixin from '@/mixins'
 const state = {
   data: {},
   title: '',
-  url: ''
+  url: '',
+  activeNames: ['description', 'raw']
 }
 
 // 事件

@@ -11,6 +11,14 @@
     <el-button><span class="icon i-runner"></span> 采集</el-button>
     <el-button><span class="icon i-format"></span> 格式化文档</el-button>
   </CommonToolbar>
-  <p>{{data.description}}</p>
-  <div v-html="data.raw"></div>
+  <div class="p-document-detail">
+    <el-collapse v-model="activeNames">
+      <el-collapse-item title="摘要 (description)" name="description">
+        <div>{{data.description}}</div>
+      </el-collapse-item>
+      <el-collapse-item title="原始HTML (raw)" name="raw">
+        <div v-html="data.raw"></div>
+      </el-collapse-item>
+    </el-collapse>
+  </div>
 </CommonView>
